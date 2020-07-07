@@ -1,1 +1,1 @@
-# goit-react-hw-05-phonebook-redux
+# goit-react-hw-06-phonebook-redux
