@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 
-import styles from './ContactForm.module.scss';
+import { connect } from 'react-redux';
+import contactsSelectors from "../../modules/contacts/contactsSelectors";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import styles from './ContactForm.module.scss';
 class ContactForm extends Component {
 
   static propTypes = {
@@ -24,8 +29,13 @@ class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { name, number } = this.state;
+    const { contacts } = this.props;
 
-    this.props.onAddContact(name, number);
+    if (!name || !number) { return toast.error('Please fill the form!') }
+    else if (name.length < 3) { toast.error('Name should be more then 3 letters') }
+    else if (contacts.some(contact => contact.name === name)) { toast.info(name + ` is alredy in contacts`) }
+    else { this.props.onAddContact(name, number); }
+
     this.setState({ name: '', number: '' });
   }
 
@@ -38,7 +48,7 @@ class ContactForm extends Component {
         <label className={styles.name}>Name
           <input type="text" name="name" className={styles.input} value={name} onChange={this.handleChange} />
         </label>
-        <label className={styles.name}>Namber
+        <label className={styles.name}>Number
           <input type="text" name="number" className={styles.input} value={number} onChange={this.handleChange} />
         </label>
         <button type="submit" className={styles.button} >Add contact</button>
@@ -47,6 +57,12 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+
+const mapState = (state) => {
+  const contacts = contactsSelectors.getItems(state);
+  return { contacts }
+}
+
+export default connect(mapState, null)(ContactForm);
 
 

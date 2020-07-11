@@ -6,14 +6,13 @@ import ContactListItem from "../ContactListItem/ContactListItem.Container";
 // redux
 import { connect } from "react-redux";
 import contactsSelectors from "../../modules/contacts/contactsSelectors";
-// import contactsActions from "../../redux/contacts/contactsActions";
-// import contactsActions from "../../modules/contacts/contactsActions";
+
 
 // styles
 import styles from '../ContactList/ContactList.module.scss';
 
 const ContactList = ({ contacts }) => {
-  // console.log('ContactList re-render');
+
 
   return (
     <ul className={styles.contactList}>
@@ -40,15 +39,6 @@ ContactList.propTypes = {
 const mapStateToProps = state => ({
   contacts: contactsSelectors.getVC(state),
 })
-// {
-//   const { items, filter } = state.contacts;
-//   const normalizedFilter = filter.toLowerCase();
-//   const visibleContacts = items.filter(({ name }) => name.toLowerCase().includes(normalizedFilter));
-//   return {
-//     contacts: visibleContacts,
-//   };
-// };
-
 
 
 export default connect(mapStateToProps)(ContactList);

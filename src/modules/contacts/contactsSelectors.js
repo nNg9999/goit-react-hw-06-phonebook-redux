@@ -21,11 +21,6 @@ const getItemById = createSelector(
   [(state, contactId) => contactId, getItems],
   (contactId, items) => items.find(item => item.id === contactId));
 
-// const getItemById = (state, contactId) => {
-//   const items = getItems(state);
-//   return items.find(item => item.id === contactId);
-// }
-
 
 export default {
   getItems,

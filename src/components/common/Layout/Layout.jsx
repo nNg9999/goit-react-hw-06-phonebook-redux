@@ -13,7 +13,7 @@ function Layout(props) {
   return (
     <div
       className={`${styles.container} ${
-        isChecked ? styles.dark : styles.light
+        isChecked.isChecked ? styles.dark : styles.light
         }`}
     >
       {children}
@@ -23,14 +23,14 @@ function Layout(props) {
 
 Layout.propTypes = {
   children: PropTypes.node,
-  isChecked: PropTypes.bool.isRequired
+  isChecked: PropTypes.object.isRequired
 
 };
 
 const mapStateToProps = state => {
   return {
-    isChecked: state.theme.theme.isChecked,
-    theme: state.theme.theme.themeConfig,
+    isChecked: state.theme.isChecked,
+    theme: state.theme.themeConfig,
   };
 };
 
