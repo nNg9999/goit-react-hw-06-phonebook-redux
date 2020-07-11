@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { connect } from 'react-redux';
 import themeActions from '../../modules/theme/themeActions';
+import themeSelector from '../../modules/theme/themeSelector';
 
 // styles
 import styles from "./ThemeToggler.module.css";
@@ -82,8 +83,7 @@ class ThemeToggler extends Component {
 
 
 const mapStateToprops = (state) => ({
-  // themeConfig: state.theme.themeConfig,
-  isChecked: state.theme.isChecked,
+  isChecked: themeSelector.getIsChecked(state),
 });
 
 

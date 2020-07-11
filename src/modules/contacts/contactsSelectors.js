@@ -11,11 +11,9 @@ const getVisibleContacts = state => {
   return items.filter(({ name }) => name.toLowerCase().includes(filter));
 }
 
-
 const getVC = createSelector([getItems, getFilter], (items, filter) => {
   return items.filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()));
 })
-
 
 const getItemById = createSelector(
   [(state, contactId) => contactId, getItems],

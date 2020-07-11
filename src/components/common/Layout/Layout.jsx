@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// context
-// import withThemeContext from '../../hoc/withThemeContext';
+
+// redux
 import { connect } from "react-redux";
+import themeSelector from '../../../modules/theme/themeSelector';
+
 // styles
 import styles from "./Layout.module.scss";
 
@@ -29,8 +31,8 @@ Layout.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    isChecked: state.theme.isChecked,
-    theme: state.theme.themeConfig,
+    theme: themeSelector.getThemeConfig(state),
+    isChecked: themeSelector.getIsChecked(state),
   };
 };
 

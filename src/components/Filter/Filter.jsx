@@ -2,7 +2,6 @@ import React from 'react';
 import { string, func } from 'prop-types';
 
 import { connect } from "react-redux";
-// import contactsActions from "../../redux/contacts/contactsActions";
 import contactsActions from "../../modules/contacts/contactsActions";
 
 import styles from '../Filter/Filter.module.scss';
